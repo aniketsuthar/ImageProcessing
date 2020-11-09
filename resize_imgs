@@ -1,0 +1,29 @@
+import cv2
+import os
+from pathlib import Path
+import glob
+
+#
+# def resize_images(path):
+#     directory = os.fsencode(path)
+#
+#     for file in os.listdir(directory):
+#         filename = os.fsdecode(file)
+#         with open(filename) as f:
+#             img = cv2.imread(f.name, 1)
+#             print("File Name ", f.name)
+#             cv2.resize(img, (100, 100))
+#             cv2.imwrite(f.name + "_resized", img)
+
+
+# images = glob.glob("**/*.jpg")
+# print("Glob ", images)
+
+directory = Path("sample_images").glob('**/*.jpg')
+for file in directory:
+    fileName = str(file)
+    img = cv2.imread(fileName, 1)
+    resized_img = cv2.resize(img, (100, 100))
+    cv2.imwrite("output" + fileName.split(".")[0] + "_resized.jpg", resized_img)
+
+# resize_images("sample_images")
